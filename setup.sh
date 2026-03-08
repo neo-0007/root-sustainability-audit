@@ -18,7 +18,7 @@ if [[ "$OS" == "Darwin" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    brew install root cmake git
+    brew install root cmake git samtools
 
 # Linux (Ubuntu only)
 elif [[ "$OS" == "Linux" ]]; then
@@ -41,6 +41,7 @@ elif [[ "$OS" == "Linux" ]]; then
     sudo apt-get install -y \
         wget cmake build-essential git \
         libvdt-dev libtbb-dev
+        samtools
 
     ROOT_URL=""
 
