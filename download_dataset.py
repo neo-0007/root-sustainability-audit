@@ -1,20 +1,19 @@
-import requests
 from pathlib import Path
+from urllib.parse import urlparse
+import urllib.request
 
-def download_file(url, filename):
-    """
-    takes in url : url to download
-             filename : location to store the file
-    reference : https://www.geeksforgeeks.org/python/how-to-download-files-from-urls-with-python/
-    """
-    path = Path("data") / filename
-    path.parent.mkdir(exist_ok=True)
 
-    response = requests.get(url)
+def download_file(url, folder):
+    filename = Path(urlparse(url).path).name
+    path = Path(folder) / filename
 
-    if response.status_code == 200:
-        with open(path, "wb") as f:
-            f.write(response.content)
-        print("Downloaded:", path)
-    else:
-        print("Download failed")
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    response = urllib.request.urlopen(url)
+
+    with open(path, "wb") as f:
+        f.write(response.read())
+
+    print("Downloaded:", path)
+
+    return str(path)
