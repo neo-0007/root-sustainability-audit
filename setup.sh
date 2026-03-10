@@ -67,6 +67,11 @@ else
     exit 1
 fi
 
+# create a tools folder if not exist
+if [[ ! -d "tools" ]]; then
+    mkdir tools
+fi
+
 # Clone RAMTools
 echo "Cloning RAMTools..."
 
