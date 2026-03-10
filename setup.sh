@@ -8,7 +8,6 @@ set -e
 
 OS="$(uname)"
 ARCH="$(uname -m)"
-INSTALL_DIR="$HOME/ramtools"
 
 # macOS
 if [[ "$OS" == "Darwin" ]]; then
@@ -43,8 +42,6 @@ elif [[ "$OS" == "Linux" ]]; then
         libvdt-dev libtbb-dev
         samtools
 
-    ROOT_URL=""
-
     if [[ "$VERSION_ID" == "22.04" ]]; then
         ROOT_URL="https://root.cern/download/root_v6.36.00.Linux-ubuntu22.04-x86_64-gcc11.4.tar.gz"
     elif [[ "$VERSION_ID" == "24.04" ]]; then
@@ -58,13 +55,12 @@ elif [[ "$OS" == "Linux" ]]; then
 
     echo "Downloading ROOT..."
 
-    wget -O root.tar.gz $ROOT_URL
-    sudo mkdir -p /opt/root
-    sudo tar -xzf root.tar.gz -C /opt/
+    wget -O root.tar.gz 
+    sudo tar -xzf root.tar.gz -C ./root/
     rm root.tar.gz
 
     echo "Activating ROOT..."
-    source /opt/root/bin/thisroot.sh
+    source ./root/bin/thisroot.sh
 
 else
     echo "Unsupported OS"
@@ -74,12 +70,12 @@ fi
 # Clone RAMTools
 echo "Cloning RAMTools..."
 
-if [[ -d "$INSTALL_DIR" ]]; then
-    cd "$INSTALL_DIR"
+if [[ -d "ramtools" ]]; then
+    cd "ramtools"
     git pull
 else
-    git clone https://github.com/compiler-research/ramtools.git "$INSTALL_DIR"
-    cd "$INSTALL_DIR"
+    git clone https://github.com/compiler-research/ramtools.git
+    cd ramtools
 fi
 
 # Build RAMTools
@@ -89,6 +85,14 @@ mkdir -p build
 cd build
 
 cmake ..
-make -j$(nproc 2>/dev/null || sysctl -n hw.ncpu)
+make -j$(nproc)
 
 echo "Build finished."
+
+echo "Moving executables to tools folder"
+
+mv ./tools/* ./../../tools/
+
+echo "Executables moved to tools folder"
+
+echo "Setup complete !!"
