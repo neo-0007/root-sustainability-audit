@@ -11,13 +11,13 @@ ARCH="$(uname -m)"
 
 # macOS
 if [[ "$OS" == "Darwin" ]]; then
-    echo "Using Homebrew to install ROOT..."
+    echo "Using Homebrew to install deps..."
 
     if ! command -v brew &> /dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    brew install root cmake git samtools
+    brew install cmake git samtools
 
 # Linux (Ubuntu only)
 elif [[ "$OS" == "Linux" ]]; then
