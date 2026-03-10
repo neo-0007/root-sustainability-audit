@@ -37,12 +37,6 @@ def generate_report(energy_dir="results"):
                 energy = float(row["energy_consumed"])
                 emissions = float(row["emissions"])
 
-                cpu_energy = float(row["cpu_energy"])
-                ram_energy = float(row["ram_energy"])
-
-                cpu_util = row["cpu_utilization_percent"]
-                ram_util = row["ram_utilization_percent"]
-
                 total_duration += duration
                 total_energy += energy
                 total_emissions += emissions
@@ -52,12 +46,6 @@ def generate_report(energy_dir="results"):
                 print(f"duration_seconds: {duration}")
                 print(f"energy_consumed_kwh: {energy}")
                 print(f"emissions_kg: {emissions}")
-
-                print(f"cpu_energy_kwh: {cpu_energy}")
-                print(f"ram_energy_kwh: {ram_energy}")
-
-                print(f"cpu_utilization_percent: {cpu_util}")
-                print(f"ram_utilization_percent: {ram_util}")
 
     print("\nTOTALS")
 
