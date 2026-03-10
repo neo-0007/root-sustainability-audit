@@ -1,0 +1,8 @@
+BAM FILES
+
+49MB : https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/pilot_data/data/NA06994/alignment/NA06994.454.MOSAIK.SRP000033.2009_11.bam
+64MB : https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/pilot_data/data/NA06994/alignment/NA06994.454.ssaha.SRP000033.2009_10.bam
+200MB : https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/phase1/data/HG00118/alignment/HG00118.chrom20.ILLUMINA.bwa.GBR.low_coverage.20101123.bam
+224MB : https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/phase1/data/HG00114/alignment/HG00114.chrom20.ILLUMINA.bwa.GBR.low_coverage.20101123.bam
+359MB : https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/phase1/data/HG00118/alignment/HG00118.unmapped.ILLUMINA.bwa.GBR.low_coverage.20101123.bam
+556MB : https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/phase1/data/HG00114/alignment/HG00114.unmapped.ILLUMINA.bwa.GBR.low_coverage.20101123.bam
