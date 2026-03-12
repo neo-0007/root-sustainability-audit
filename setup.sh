@@ -2,7 +2,7 @@
 set -e
 
 # SETUP SCRIPT FOR UBUNTU 22, 24 AND 25
-# SOURCE : https://github.com/compiler-research/ramtools/blob/develop/.github/workflows/ci.yml ( TAKEN REFERENCE FROM THIS CI PIPELINE )
+# SOURCE : https://github.com/compiler-research/ramtools/blob/develop/.github/workflows/ci.yml
 # FOR MACOS USES homebrew
 # https://root.cern/install/ IF YOU ARE USING ANOTHER OS USE THIS PAGE TO INSTALL root
 
@@ -37,10 +37,16 @@ elif [[ "$OS" == "Linux" ]]; then
     echo "Detected Ubuntu $VERSION_ID"
 
     sudo apt-get update
-    sudo apt-get install -y \
-        wget cmake build-essential git \
-        libvdt-dev libtbb-dev
-        samtools
+
+    if [[ "$VERSION_ID" == "22.04" ]]; then
+        sudo apt-get install -y \
+            wget cmake build-essential git \
+            libtbb-dev samtools
+    else
+        sudo apt-get install -y \
+            wget cmake build-essential git \
+            libvdt-dev libtbb-dev samtools
+    fi
 
     if [[ "$VERSION_ID" == "22.04" ]]; then
         ROOT_URL="https://root.cern/download/root_v6.36.00.Linux-ubuntu22.04-x86_64-gcc11.4.tar.gz"
@@ -55,8 +61,11 @@ elif [[ "$OS" == "Linux" ]]; then
 
     echo "Downloading ROOT..."
 
-    wget -O root.tar.gz 
-    sudo tar -xzf root.tar.gz -C ./root/
+    wget -O root.tar.gz "$ROOT_URL"
+
+    mkdir -p root
+    sudo tar -xzf root.tar.gz -C ./root/ --strip-components=1
+
     rm root.tar.gz
 
     echo "Activating ROOT..."
